@@ -1,0 +1,52 @@
+{
+  "sourceLanguage": "en",
+  "version": "1.0",
+  "strings": {
+    "CFBundleDisplayName": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apteekki"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apotek"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pharmacy"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "NSLocationWhenInUseUsageDescription": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sijaintiasi käytetään lähimmän apteekin löytämiseen."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din plats används för att hitta närmaste apotek."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your location is used to find the pharmacy nearest to you."
+          }
+        }
+      },
+      "extractionState": "manual"
+    }
+  }
+}

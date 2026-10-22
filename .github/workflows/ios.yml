@@ -1,0 +1,62 @@
+name: iOS
+
+on:
+  push:
+    paths: ['ios/**', '.github/workflows/ios.yml']
+  pull_request:
+    paths: ['ios/**', '.github/workflows/ios.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Show toolchain
+        run: xcodebuild -version
+
+      # Simulator names change with every Xcode release, so pick whatever iPhone is installed.
+      - name: Pick a simulator
+        id: sim
+        run: |
+          udid=$(xcrun simctl list devices available --json \
+            | jq -r '[.devices | to_entries[] | select(.key | contains("iOS")) | .value[] | select(.name | startswith("iPhone"))][0].udid')
+          echo "Using simulator $udid"
+          echo "udid=$udid" >> "$GITHUB_OUTPUT"
+
+      - name: Build and test
+        run: |
+          status=0
+          xcodebuild test \
+            -project NearestPharmacy.xcodeproj \
+            -scheme NearestPharmacy \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            CODE_SIGNING_ALLOWED=NO \
+            > xcodebuild.log 2>&1 || status=$?
+          # The full log is huge; show what matters and keep the rest as an artifact.
+          grep -E '(error|warning):|[Tt]est (Suite|Case|run)|✔|✘|\*\* (BUILD|TEST)' xcodebuild.log || true
+
+          # Surface compiler errors and failed tests as annotations on the run page.
+          root="$GITHUB_WORKSPACE/"
+          grep -E '^/[^:]+:[0-9]+:[0-9]+: error: ' xcodebuild.log | sort -u | head -20 \
+            | sed -E "s#^${root}##; s#^([^:]+):([0-9]+):([0-9]+): error: (.*)#::error file=\1,line=\2,col=\3::\4#" || true
+          grep -E '✘|error: |Test Case .* failed' xcodebuild.log | grep -vE '^/[^:]+:[0-9]+:[0-9]+: ' | sort -u | head -10 \
+            | sed -E 's/^/::error::/' || true
+          # Make the test count visible on the run page, so "green" can't mean "0 tests ran".
+          grep -E 'Test run with [0-9]+ tests? .*(passed|failed)|Executed [0-9]+ tests?' xcodebuild.log | tail -2 \
+            | sed -E 's/^/::notice::/' || true
+          exit $status
+
+      - name: Upload log
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: xcodebuild-log
+          path: ios/xcodebuild.log

@@ -1,0 +1,406 @@
+{
+  "sourceLanguage": "en",
+  "version": "1.0",
+  "strings": {
+    "%@ away": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ päässä"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bort"
+          }
+        }
+      }
+    },
+    "Allow location access, search an address or tap the map to find the nearest pharmacy.": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salli sijainnin käyttö, hae osoitetta tai napauta karttaa löytääksesi lähimmän apteekin."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillåt platsåtkomst, sök en adress eller tryck på kartan för att hitta närmaste apotek."
+          }
+        }
+      }
+    },
+    "Call": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soita"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ring"
+          }
+        }
+      }
+    },
+    "Couldn't determine your location. Search an address or tap the map instead.": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sijaintiasi ei voitu määrittää. Hae osoitetta tai napauta karttaa."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kunde inte fastställa din plats. Sök en adress eller tryck på kartan i stället."
+          }
+        }
+      }
+    },
+    "Couldn't load pharmacies. Check your connection and try again.": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apteekkeja ei voitu ladata. Tarkista yhteys ja yritä uudelleen."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kunde inte läsa in apotek. Kontrollera anslutningen och försök igen."
+          }
+        }
+      }
+    },
+    "Directions": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reittiohjeet"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vägbeskrivning"
+          }
+        }
+      }
+    },
+    "Finding pharmacies nearby…": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etsitään lähellä olevia apteekkeja…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Söker apotek i närheten…"
+          }
+        }
+      }
+    },
+    "Getting your location…": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haetaan sijaintiasi…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hämtar din position…"
+          }
+        }
+      }
+    },
+    "Location access is off. Search an address or tap the map instead.": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sijainnin käyttö on estetty. Hae osoitetta tai napauta karttaa."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Platsåtkomst är avstängd. Sök en adress eller tryck på kartan i stället."
+          }
+        }
+      }
+    },
+    "Looking up the address…": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haetaan osoitetta…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Söker adressen…"
+          }
+        }
+      }
+    },
+    "Nearest Pharmacy": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lähin apteekki"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Närmaste apotek"
+          }
+        }
+      }
+    },
+    "Nearest pharmacy": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lähin apteekki"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Närmaste apotek"
+          }
+        }
+      }
+    },
+    "No pharmacies found within 25 km of this point.": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apteekkeja ei löytynyt 25 km:n säteeltä."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga apotek hittades inom 25 km från den här punkten."
+          }
+        }
+      }
+    },
+    "No place found for “%@”.": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haulla ”%@” ei löytynyt paikkaa."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen plats hittades för ”%@”."
+          }
+        }
+      }
+    },
+    "Open Settings": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avaa asetukset"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppna inställningar"
+          }
+        }
+      }
+    },
+    "Other pharmacies nearby": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muut lähellä olevat apteekit"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Andra apotek i närheten"
+          }
+        }
+      }
+    },
+    "Pharmacy": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apteekki"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apotek"
+          }
+        }
+      }
+    },
+    "Search an address or place": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hae osoitetta tai paikkaa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sök en adress eller plats"
+          }
+        }
+      }
+    },
+    "Selected point on the map": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valittu kohta kartalla"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vald punkt på kartan"
+          }
+        }
+      }
+    },
+    "Tip: tap anywhere on the map to search from that point.": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vinkki: napauta mitä tahansa kohtaa kartalla hakeaksesi sieltä."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tips: tryck var som helst på kartan för att söka från den punkten."
+          }
+        }
+      }
+    },
+    "Try again": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yritä uudelleen"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Försök igen"
+          }
+        }
+      }
+    },
+    "Use my location": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Käytä sijaintiani"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Använd min plats"
+          }
+        }
+      }
+    },
+    "Website": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verkkosivut"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Webbplats"
+          }
+        }
+      }
+    },
+    "You are here": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Olet tässä"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du är här"
+          }
+        }
+      }
+    },
+    "Your location": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sijaintisi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din plats"
+          }
+        }
+      }
+    }
+  }
+}
