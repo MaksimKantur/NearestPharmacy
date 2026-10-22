@@ -8,6 +8,11 @@ struct PharmacyMap: View {
     var body: some View {
         MapReader { proxy in
             Map(position: $camera) {
+                if let origin = finder.origin, let accuracy = origin.accuracy {
+                    MapCircle(center: origin.coordinate, radius: accuracy)
+                        .foregroundStyle(.blue.opacity(0.1))
+                        .stroke(.blue.opacity(0.5), lineWidth: 1)
+                }
                 ForEach(finder.pharmacies) { item in
                     Marker(item.pharmacy.displayName, systemImage: "cross.fill", coordinate: item.pharmacy.coordinate)
                         .tint(tint(for: item))

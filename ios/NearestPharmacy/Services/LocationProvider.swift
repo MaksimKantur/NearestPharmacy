@@ -5,7 +5,7 @@ import CoreLocation
 final class LocationProvider: NSObject, LocationProviding {
     private let manager = CLLocationManager()
     private var authorizationContinuation: CheckedContinuation<Void, Never>?
-    private var locationContinuation: CheckedContinuation<CLLocationCoordinate2D, Error>?
+    private var locationContinuation: CheckedContinuation<CLLocation, Error>?
 
     override init() {
         super.init()
@@ -14,7 +14,7 @@ final class LocationProvider: NSObject, LocationProviding {
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     }
 
-    func currentLocation() async throws -> CLLocationCoordinate2D {
+    func currentLocation() async throws -> CLLocation {
         if manager.authorizationStatus == .notDetermined {
             await withCheckedContinuation { continuation in
                 authorizationContinuation = continuation
@@ -37,7 +37,7 @@ final class LocationProvider: NSObject, LocationProviding {
         }
     }
 
-    private func finishLocation(with result: Result<CLLocationCoordinate2D, Error>) {
+    private func finishLocation(with result: Result<CLLocation, Error>) {
         locationContinuation?.resume(with: result)
         locationContinuation = nil
     }
@@ -54,9 +54,9 @@ extension LocationProvider: CLLocationManagerDelegate {
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let coordinate = locations.last?.coordinate else { return }
+        guard let location = locations.last else { return }
         MainActor.assumeIsolated {
-            finishLocation(with: .success(coordinate))
+            finishLocation(with: .success(location))
         }
     }
 

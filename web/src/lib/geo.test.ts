@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { directionsUrl, distanceMeters, formatDistance } from './geo';
+import { directionsUrl, distanceMeters, formatDistance, isApproximate } from './geo';
 
 const HELSINKI = { lat: 60.1699, lng: 24.9384 };
 const STOCKHOLM = { lat: 59.3293, lng: 18.0686 };
@@ -37,6 +37,15 @@ describe('formatDistance', () => {
 
   it('shows whole kilometres from 10 km', () => {
     expect(formatDistance(12_600, 'en')).toBe('13 km');
+  });
+});
+
+describe('isApproximate', () => {
+  it('flags positions less precise than a kilometre', () => {
+    expect(isApproximate(4_000)).toBe(true);
+    expect(isApproximate(1_000)).toBe(false);
+    expect(isApproximate(25)).toBe(false);
+    expect(isApproximate(undefined)).toBe(false);
   });
 });
 

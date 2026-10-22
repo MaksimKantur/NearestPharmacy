@@ -35,15 +35,26 @@ final class PharmacyFinder {
         var latitude: Double
         var longitude: Double
         var kind: Kind
+        /// Radius of uncertainty in metres; set for device locations.
+        var accuracy: CLLocationDistance?
 
-        init(_ coordinate: CLLocationCoordinate2D, kind: Kind) {
+        init(_ coordinate: CLLocationCoordinate2D, kind: Kind, accuracy: CLLocationDistance? = nil) {
             latitude = coordinate.latitude
             longitude = coordinate.longitude
             self.kind = kind
+            self.accuracy = accuracy
         }
 
         var coordinate: CLLocationCoordinate2D {
             CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }
+
+        /// Above this many metres of uncertainty the UI suggests searching an address instead.
+        static let approximateAccuracy: CLLocationDistance = 1_000
+
+        /// Too rough to trust for "nearest" — e.g. a Wi-Fi/cell fix indoors.
+        var isApproximate: Bool {
+            (accuracy ?? 0) > Self.approximateAccuracy
         }
     }
 
@@ -78,16 +89,18 @@ final class PharmacyFinder {
     func useCurrentLocation() {
         run(retry: { [weak self] in self?.useCurrentLocation() }) { [self] in
             status = .locating
-            let coordinate: CLLocationCoordinate2D
+            let location: CLLocation
             do {
-                coordinate = try await locator.currentLocation()
+                location = try await locator.currentLocation()
             } catch {
                 guard !Task.isCancelled else { return }
                 status = .failed(error as? LocationError == .denied ? .locationDenied : .locationUnavailable)
                 return
             }
             guard !Task.isCancelled else { return }
-            await search(from: Origin(coordinate, kind: .currentLocation))
+            // A negative accuracy means CoreLocation couldn't estimate it.
+            let accuracy = location.horizontalAccuracy >= 0 ? location.horizontalAccuracy : nil
+            await search(from: Origin(location.coordinate, kind: .currentLocation, accuracy: accuracy))
         }
     }
 
