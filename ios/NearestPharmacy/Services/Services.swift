@@ -9,7 +9,8 @@ protocol PharmacyProvider {
 /// One-shot access to the device location, including the permission prompt.
 @MainActor
 protocol LocationProviding {
-    func currentLocation() async throws -> CLLocationCoordinate2D
+    /// The fix includes `horizontalAccuracy`, so callers can tell a GPS position from a rough one.
+    func currentLocation() async throws -> CLLocation
 }
 
 enum LocationError: Error, Equatable {

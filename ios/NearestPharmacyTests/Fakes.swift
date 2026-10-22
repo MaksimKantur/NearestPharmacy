@@ -1,7 +1,12 @@
 import CoreLocation
+import Foundation
 @testable import NearestPharmacy
 
 let helsinki = CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384)
+
+func deviceLocation(_ coordinate: CLLocationCoordinate2D = helsinki, accuracy: CLLocationDistance = 10) -> CLLocation {
+    CLLocation(coordinate: coordinate, altitude: 0, horizontalAccuracy: accuracy, verticalAccuracy: -1, timestamp: Date())
+}
 
 /// A pharmacy roughly `metersNorth` metres north of Helsinki centre.
 func pharmacy(_ id: String, metersNorth: Double) -> Pharmacy {
@@ -27,13 +32,13 @@ final class FakeProvider: PharmacyProvider {
 
 @MainActor
 final class FakeLocator: LocationProviding {
-    var result: Result<CLLocationCoordinate2D, Error>
+    var result: Result<CLLocation, Error>
 
-    init(_ result: Result<CLLocationCoordinate2D, Error>) {
+    init(_ result: Result<CLLocation, Error>) {
         self.result = result
     }
 
-    func currentLocation() async throws -> CLLocationCoordinate2D {
+    func currentLocation() async throws -> CLLocation {
         try result.get()
     }
 }

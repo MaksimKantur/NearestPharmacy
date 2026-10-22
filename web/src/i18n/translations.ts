@@ -38,6 +38,8 @@ const en = {
   errorAddressNotFound: 'No place found for “{query}”.',
   errorNetwork: "Couldn't reach the map data service. Please try again.",
   retry: 'Try again',
+  approximateLocation:
+    'Your location is approximate (±{accuracy}). For an exact result, search your address or click your spot on the map.',
   snapshotNotice: 'Live data is unavailable — showing saved data from {date}.',
   snapshotRefreshing: 'Live data is slow — showing saved data from {date} while it loads…',
   dataAttribution: 'Pharmacy data © OpenStreetMap contributors',
@@ -77,6 +79,8 @@ const fi: Messages = {
   errorAddressNotFound: 'Haulla ”{query}” ei löytynyt paikkaa.',
   errorNetwork: 'Karttapalveluun ei saatu yhteyttä. Yritä uudelleen.',
   retry: 'Yritä uudelleen',
+  approximateLocation:
+    'Sijaintisi on likimääräinen (±{accuracy}). Saat tarkan tuloksen hakemalla osoitteesi tai napsauttamalla kohtaasi kartalla.',
   snapshotNotice: 'Reaaliaikaiset tiedot eivät ole saatavilla – näytetään tallennetut tiedot ajalta {date}.',
   snapshotRefreshing:
     'Reaaliaikaiset tiedot latautuvat hitaasti – näytetään sillä välin tallennetut tiedot ajalta {date}…',
@@ -114,6 +118,8 @@ const sv: Messages = {
   errorAddressNotFound: 'Ingen plats hittades för ”{query}”.',
   errorNetwork: 'Kunde inte nå karttjänsten. Försök igen.',
   retry: 'Försök igen',
+  approximateLocation:
+    'Din plats är ungefärlig (±{accuracy}). Sök din adress eller klicka på din plats på kartan för ett exakt resultat.',
   snapshotNotice: 'Livedata är inte tillgänglig – visar sparad data från {date}.',
   snapshotRefreshing: 'Livedata laddas långsamt – visar sparad data från {date} under tiden…',
   dataAttribution: 'Apoteksdata © OpenStreetMap-bidragsgivare',

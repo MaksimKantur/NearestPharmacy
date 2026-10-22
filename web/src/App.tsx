@@ -6,6 +6,7 @@ import { SearchControls } from './components/SearchControls';
 import { usePharmacySearch, type Origin, type Status } from './hooks/usePharmacySearch';
 import { useI18n } from './i18n/I18nProvider';
 import type { MessageKey } from './i18n/translations';
+import { formatDistance, isApproximate } from './lib/geo';
 
 const PROGRESS_MESSAGE: Partial<Record<Status, MessageKey>> = {
   locating: 'locating',
@@ -72,6 +73,12 @@ export default function App() {
             <p className="origin">
               <span className="origin__dot" aria-hidden="true" />
               {originDescription(origin, t)}
+            </p>
+          )}
+
+          {origin?.source === 'gps' && isApproximate(origin.accuracy) && status !== 'locating' && (
+            <p className="notice">
+              {t('approximateLocation', { accuracy: formatDistance(origin.accuracy ?? 0, language) })}
             </p>
           )}
 

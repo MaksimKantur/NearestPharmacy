@@ -13,6 +13,15 @@ struct ResultsPanel: View {
                         OriginLabel(origin: origin)
                     }
 
+                    if let origin = finder.origin, origin.isApproximate, let accuracy = origin.accuracy,
+                       finder.status != .locating {
+                        Text("Your location is approximate (±\(DistanceFormatter.string(for: accuracy))). For an exact result, search your address or tap your spot on the map.")
+                            .font(.subheadline)
+                            .padding(12)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(.yellow.opacity(0.15), in: RoundedRectangle(cornerRadius: 12))
+                    }
+
                     if let origin = finder.origin, let nearest = finder.nearest {
                         SectionHeader("Nearest pharmacy")
                         NearestPharmacyCard(

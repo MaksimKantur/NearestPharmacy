@@ -41,7 +41,12 @@ struct ContentView: View {
     /// Keeps the origin and the selected pharmacy (the nearest one by default) in view.
     private func frameCamera() {
         guard let origin = finder.origin else { return }
-        let region = MapFraming.region(framing: origin.coordinate, and: finder.selected?.pharmacy.coordinate)
+        let region = if origin.isApproximate, let accuracy = origin.accuracy {
+            // With a rough position "nearest" is a guess too: show the whole area the user may be in.
+            MKCoordinateRegion(center: origin.coordinate, latitudinalMeters: accuracy * 2.4, longitudinalMeters: accuracy * 2.4)
+        } else {
+            MapFraming.region(framing: origin.coordinate, and: finder.selected?.pharmacy.coordinate)
+        }
         withAnimation { camera = .region(region) }
     }
 }

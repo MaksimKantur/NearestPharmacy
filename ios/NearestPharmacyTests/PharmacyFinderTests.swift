@@ -10,7 +10,7 @@ struct PharmacyFinderTests {
         geocoder: FakeGeocoder = FakeGeocoder()
     ) -> PharmacyFinder {
         // Default arguments are evaluated outside the main actor, so the locator is built here.
-        PharmacyFinder(provider: provider, locator: locator ?? FakeLocator(.success(helsinki)), geocoder: geocoder)
+        PharmacyFinder(provider: provider, locator: locator ?? FakeLocator(.success(deviceLocation())), geocoder: geocoder)
     }
 
     @Test func findsNearestFromCurrentLocationAndSelectsIt() async {
@@ -75,6 +75,21 @@ struct PharmacyFinderTests {
         await finder.waitForCurrentAction()
 
         #expect(finder.pharmacies.count == PharmacyFinder.resultLimit)
+    }
+
+    @Test func flagsARoughDeviceLocationAsApproximate() async {
+        let provider = FakeProvider { _, _ in [pharmacy("a", metersNorth: 50)] }
+
+        let rough = makeFinder(provider: provider, locator: FakeLocator(.success(deviceLocation(accuracy: 4_000))))
+        rough.useCurrentLocation()
+        await rough.waitForCurrentAction()
+        #expect(rough.origin?.accuracy == 4_000)
+        #expect(rough.origin?.isApproximate == true)
+
+        let precise = makeFinder(provider: provider, locator: FakeLocator(.success(deviceLocation(accuracy: 15))))
+        precise.useCurrentLocation()
+        await precise.waitForCurrentAction()
+        #expect(precise.origin?.isApproximate == false)
     }
 
     @Test func mapsDeniedPermission() async {

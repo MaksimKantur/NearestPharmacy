@@ -12,6 +12,8 @@ export interface Origin {
   source: OriginSource;
   /** Human-readable place name, set for address searches. */
   label?: string;
+  /** Radius of uncertainty in metres, reported by the browser for GPS origins. */
+  accuracy?: number;
 }
 
 export type Status = 'idle' | 'locating' | 'geocoding' | 'loading' | 'done' | 'error';
@@ -115,7 +117,7 @@ export function usePharmacySearch(language: string): PharmacySearch {
       (pos) => {
         if (signal.aborted) return;
         const location = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-        void searchFrom({ location, source: 'gps' }, signal);
+        void searchFrom({ location, source: 'gps', accuracy: pos.coords.accuracy }, signal);
       },
       (err) => {
         if (signal.aborted) return;

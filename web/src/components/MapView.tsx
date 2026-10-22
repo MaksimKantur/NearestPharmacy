@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { CircleMarker, MapContainer, TileLayer, Tooltip, useMap, useMapEvents } from 'react-leaflet';
-import { latLngBounds } from 'leaflet';
-import type { LatLng } from '../lib/geo';
+import { Circle, CircleMarker, MapContainer, TileLayer, Tooltip, useMap, useMapEvents } from 'react-leaflet';
+import { latLng, latLngBounds } from 'leaflet';
+import { isApproximate, type LatLng } from '../lib/geo';
 import { displayName, type PharmacyWithDistance } from '../lib/overpass';
 import type { Origin } from '../hooks/usePharmacySearch';
 import { useI18n } from '../i18n/I18nProvider';
@@ -27,6 +27,11 @@ function FitToResults({ origin, nearest }: { origin: Origin | null; nearest?: Ph
   const map = useMap();
   useEffect(() => {
     if (!origin) return;
+    // With a rough position, "nearest" is a guess too: show the whole area the user may be in.
+    if (isApproximate(origin.accuracy)) {
+      map.fitBounds(latLng(origin.location).toBounds((origin.accuracy ?? 0) * 2), { padding: [20, 20] });
+      return;
+    }
     if (!nearest) {
       map.setView(origin.location, Math.max(map.getZoom(), 14));
       return;
@@ -88,6 +93,15 @@ export function MapView({ origin, pharmacies, selectedId, onSelect, onMapClick }
           </CircleMarker>
         );
       })}
+
+      {origin?.accuracy !== undefined && (
+        <Circle
+          center={origin.location}
+          radius={origin.accuracy}
+          interactive={false}
+          pathOptions={{ color: '#2563eb', weight: 1, fillColor: '#2563eb', fillOpacity: 0.08 }}
+        />
+      )}
 
       {origin && (
         <CircleMarker

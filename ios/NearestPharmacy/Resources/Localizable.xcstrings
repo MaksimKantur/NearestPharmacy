@@ -401,6 +401,22 @@
           }
         }
       }
+    },
+    "Your location is approximate (±%@). For an exact result, search your address or tap your spot on the map.": {
+      "localizations": {
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sijaintisi on likimääräinen (±%@). Saat tarkan tuloksen hakemalla osoitteesi tai napauttamalla kohtaasi kartalla."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din plats är ungefärlig (±%@). Sök din adress eller tryck på din plats på kartan för ett exakt resultat."
+          }
+        }
+      }
     }
   }
 }

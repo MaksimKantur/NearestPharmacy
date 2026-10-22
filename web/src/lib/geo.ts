@@ -17,6 +17,16 @@ export function distanceMeters(a: LatLng, b: LatLng): number {
   return 2 * EARTH_RADIUS_M * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
+/**
+ * Above this, a device position is too rough to trust for "nearest". Desktop
+ * browsers without GPS or Wi-Fi fall back to IP geolocation, which can be
+ * several kilometres off.
+ */
+export const APPROXIMATE_ACCURACY_M = 1_000;
+
+export const isApproximate = (accuracyMeters: number | undefined): boolean =>
+  accuracyMeters !== undefined && accuracyMeters > APPROXIMATE_ACCURACY_M;
+
 /** "350 m" below one kilometre, "1.2 km" / "1,2 km" (locale-aware) above. */
 export function formatDistance(meters: number, locale: string): string {
   if (meters < 1000) {
